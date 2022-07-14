@@ -4,7 +4,7 @@ const bcrypt=require('bcryptjs');
 const session = require ("express-session");
 const MongoDBSession = require('connect-mongodb-session')(session);
 const  mongoose  = require("mongoose");
-const UserModel=require("./src/model/User");
+const UserModel=require("./src/model/user");
 const Bookdata = require('./src/model/Bookdata');
 
 const app =express();
@@ -157,4 +157,7 @@ app.post("/register",async(req,res)=> {
 
 
 
-app.listen(6007);
+const server = app.listen(process.env.PORT || 6007,()=>{
+    const port = server.address().port;
+    console.log(`Express is workingon port $"{port}`);
+});
